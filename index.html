@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<!--
+    A simple HTML template for a personal portfolio website.
+    The website has a navigation bar at the top, a hero section with a call-to-action button,
+    an about section, a skills section, a projects section, and a contact section.
+    The website is fully responsive and has a modern design.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0B0B0F">
+    <meta name="description" content="Kirthivasan's Personal Portfolio - Web Developer and Programmer">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>My Portfolio</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">Portfolio</span>
+                <div class="logo-glow"></div>
+            </a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown hero-title">Hi, I'm Kirthivasan</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s hero-subtitle">A passionate programmer, developer creating amazing web experiences, Apps, Hardware Projects</p>
+            <a href="#contact" class="animate__animated animate__fadeInUp animate__delay-2s get-in-touch">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-content">
+            <h2 class="section-title">About Me</h2>
+            <p class="animate-on-scroll">
+                Hi there! 👋 I'm a frontend developer with a deep passion for crafting seamless user experiences. With extensive experience across various tech domains and a strong command of multiple programming languages, I thrive on solving complex problems and bringing ideas to life.
+            </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-content">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Frontend Development</h3>
+                    <p>Creating responsive and interactive user interfaces with modern web technologies.</p>
+                    <div class="skill-list">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Responsive Design</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Programming Languages</h3>
+                    <p>Building Apps and APIs.</p>
+                    <div class="skill-list">
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Mysql</span>
+                        
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Tools & Technologies</h3>
+                    <p>Utilizing modern development tools and AI for efficient and scalable workflows.</p>
+                    <div class="skill-list">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Windsurf</span>
+                        <span class="skill-tag">Cursor</span>
+                        <span class="skill-tag">Q Developer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-content">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images/Picture1.png" alt="Project One">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Digital library Website</h3>
+                        <p class="project-description">A digital library website built with PhP and Mysql, Which provides a user-friendly interface for managing books, authors, and categories for both the teacher and student.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">PhP</span>
+                            <span class="tech-tag">Mysql</span>
+                            <span class="tech-tag">Css </span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kirthivasanr/Digital-Library-Website.git" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i><span>View Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images/pic 2.jpeg" alt="Project Two">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Tin-Dog Website</h3>
+                        <p class="project-description">A modern dating website for dogs (just for fun) with a simple and intuitive interface and smooth animations. Features responsive design and interactive elements.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kirthivasanr/Tin-Dog-Website.git" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i><span>View Code</span>
+                            </a>
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images/s.jpg" alt="Project Three">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Obstacle Detector</h3>
+                        <p class="project-description">A real-time Obstacle detector using Ultra sonic sensor and Arduino, Indicates the person with strong buzzer and Led indication. A prototype. </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Arduino</span>
+                            <span class="tech-tag">C++</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://drive.google.com/file/d/1q5w0EZ7__V1mTjTkswCF6STuTM6ffEkY/view?usp=sharing" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i><span>View Code</span>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-content">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="contact-tagline">Let's collaborate, innovate, and turn ideas into reality. I'm always open to exciting opportunities and meaningful conversations.</p>
+            <div class="social-links">
+                <a href="https://www.instagram.com/kirthivasan.__/" target="_blank" class="social-link instagram">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="https://www.linkedin.com/in/kirthivasan-m-r-2b7a6932a/" target="_blank" class="social-link linkedin">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/kirthivasanr" target="_blank" class="social-link github">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:kirthivasan09@gmail.com" class="social-link email">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text"> For the best experience, view this portfolio on a desktop or laptop</p>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Kirthivasan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="particles.js"></script>
+</body>
+</html>

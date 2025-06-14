@@ -1,20 +1,47 @@
 class ParticleBackground {
     constructor() {
+        // Check if device is mobile
+        this.isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Optimize particles for mobile but keep them visible
+        if (this.isMobile) {
+            this.starTypes = [
+                { size: 1, speed: 0.015, count: 50 },  // Reduced but visible distant stars
+                { size: 2, speed: 0.03, count: 25 },   // Reduced medium stars
+                { size: 3, speed: 0.05, count: 10 }    // Reduced bright stars
+            ];
+        } else {
+            this.starTypes = [
+                { size: 1, speed: 0.02, count: 100 },  // Distant stars
+                { size: 2, speed: 0.05, count: 50 },   // Medium stars
+                { size: 3, speed: 0.1, count: 20 }     // Bright stars
+            ];
+        }
+
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
         this.canvas.className = 'particle-bg';
         document.body.appendChild(this.canvas);
         
         this.particles = [];
-        this.starTypes = [
-            { size: 1, speed: 0.02, count: 100 },  // Distant stars
-            { size: 2, speed: 0.05, count: 50 },   // Medium stars
-            { size: 3, speed: 0.1, count: 20 }     // Bright stars
-        ];
         
         this.init();
-        window.addEventListener('resize', () => this.resize());
+        window.addEventListener('resize', () => this.handleResize());
         this.animate();
+    }
+    
+    handleResize() {
+        // Update mobile state on resize
+        const wasMobile = this.isMobile;
+        this.isMobile = window.innerWidth <= 768;
+        
+        // If switching between mobile/desktop, recreate particles
+        if (wasMobile !== this.isMobile) {
+            this.particles = [];
+            this.createParticles();
+        }
+        
+        this.resize();
     }
     
     init() {
@@ -105,11 +132,22 @@ class ParticleBackground {
     }
     
     animate() {
-        this.drawParticles();
-        requestAnimationFrame(() => this.animate());
+        // Use reasonable frame rate on mobile for good balance of performance and smoothness
+        if (this.isMobile) {
+            setTimeout(() => {
+                this.drawParticles();
+                requestAnimationFrame(() => this.animate());
+            }, 1000 / 45); // 45 FPS for mobile - good balance
+        } else {
+            this.drawParticles();
+            requestAnimationFrame(() => this.animate());
+        }
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    new ParticleBackground();
+    // Only create particle background if not on a very low-end device
+    if (!navigator.hardwareConcurrency || navigator.hardwareConcurrency > 2) {
+        new ParticleBackground();
+    }
 });

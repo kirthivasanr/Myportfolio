@@ -1,5 +1,8 @@
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Mobile detection
+    const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
     // Throttle function for performance
     function throttle(func, limit) {
         let inThrottle;
@@ -21,24 +24,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Passive event listeners for better performance
     const menuToggleOptions = { passive: true };
 
-    mobileMenuBtn.addEventListener('click', function() {
-        this.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        document.body.classList.toggle('menu-open');
-    }, menuToggleOptions);
+    if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        }, menuToggleOptions);
+    }
 
     // Close menu when clicking a link
     navLinksItems.forEach(link => {
         link.addEventListener('click', () => {
-            mobileMenuBtn.classList.remove('active');
-            navLinks.classList.remove('active');
-            document.body.classList.remove('menu-open');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
         }, menuToggleOptions);
     });
 
     // Performance-optimized outside click handler
     const handleOutsideClick = throttle(function(e) {
-        if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        if (navLinks && mobileMenuBtn && !navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
             mobileMenuBtn.classList.remove('active');
             navLinks.classList.remove('active');
             document.body.classList.remove('menu-open');
@@ -68,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1
+        threshold: isMobile ? 0.05 : 0.1 // Lower threshold for mobile
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -88,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const lazyElement = entry.target;
+                // Keep animations on all devices, just lighter on mobile
                 lazyElement.classList.add('animate__animated', 'animate__fadeIn');
                 observer.unobserve(lazyElement);
             }
@@ -100,23 +108,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Navbar scroll effect
-window.addEventListener('scroll', function() {
+// Navbar scroll effect - throttled for better performance
+const handleScroll = throttle(function() {
     const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 50) {
-        navbar.style.background = 'rgba(17, 24, 39, 0.98)';
-    } else {
-        navbar.style.background = 'rgba(17, 24, 39, 0.95)';
+    if (navbar) {
+        if (window.scrollY > 50) {
+            navbar.style.background = 'rgba(11, 11, 15, 0.98)';
+        } else {
+            navbar.style.background = 'rgba(11, 11, 15, 0.95)';
+        }
     }
-});
+}, 16); // ~60fps
 
-// Form submission
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // Add your form submission logic here
-        alert('Thank you for your message! I will get back to you soon.');
-        contactForm.reset();
-    });
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
 }
+
+window.addEventListener('scroll', handleScroll, { passive: true });
